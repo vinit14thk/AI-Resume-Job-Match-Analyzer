@@ -220,6 +220,8 @@ preferred_score = (
 )
 
 weighted_skill_score = required_score + preferred_score
+skill_component = weighted_skill_score * 0.70
+similarity_component = match_percentage * 0.30
 overall_match_score = (
     weighted_skill_score * 0.70
     + match_percentage * 0.30
@@ -231,6 +233,10 @@ print(f"{weighted_skill_score:.2f}%")
 
 print("\nOverall Resume–Job Match Score:")
 print(f"{overall_match_score:.2f}%")
+
+print("\nScore Breakdown:")
+print(f"Skill Match Contribution (70%): {skill_component:.2f}%")
+print(f"TF-IDF Similarity Contribution (30%): {similarity_component:.2f}%")
 
 if overall_match_score >= 80:
     match_level = "Excellent Match"
@@ -313,6 +319,8 @@ generate_report(
     tfidf_score=match_percentage,
     weighted_skill_score=weighted_skill_score,
     overall_match_score=overall_match_score,
+    skill_component=skill_component,
+    similarity_component=similarity_component,
     match_level=match_level,
     required_job_skills=required_job_skills,
     required_matches=required_matches,
