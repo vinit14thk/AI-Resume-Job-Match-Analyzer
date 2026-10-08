@@ -213,10 +213,17 @@ preferred_score = (
 )
 
 weighted_skill_score = required_score + preferred_score
+overall_match_score = (
+    weighted_skill_score * 0.70
+    + match_percentage * 0.30
+)
 
 
 print("\nWeighted Skill Match Score:")
 print(f"{weighted_skill_score:.2f}%")
+
+print("\nOverall Resume–Job Match Score:")
+print(f"{overall_match_score:.2f}%")
 
 print("\nRequired Skills:", len(required_job_skills))
 print("Required Skills Matched:", len(required_matches))

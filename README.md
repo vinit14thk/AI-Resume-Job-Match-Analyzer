@@ -92,8 +92,9 @@ AI-Resume-Job-Match-Analyzer/
 
 ## Example Results
 
-- Resume–Job Match Score: 34.59%
+- TF-IDF Resume–Job Similarity: 34.59%
 - Weighted Skill Match Score: 77.50%
+- Overall Resume–Job Match Score: 64.63%
 - Required Skills Matched: 7/7
 - Preferred Skills Matched: 2/8
 - Matching Skills: 9
