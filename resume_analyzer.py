@@ -1,3 +1,4 @@
+import os
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -16,7 +17,21 @@ print("=" * 60)
 # READ RESUME FROM PDF
 # ==========================================
 
-resume_file = input("\nEnter resume PDF filename: ")
+pdf_files = [
+    file for file in os.listdir(".")
+    if file.lower().endswith(".pdf")
+]
+
+print("\nAvailable Resume PDFs:")
+
+for i, file in enumerate(pdf_files, start=1):
+    print(f"{i}. {file}")
+
+resume_choice = int(
+    input("\nEnter the number of the resume PDF: ")
+)
+
+resume_file = pdf_files[resume_choice - 1]
 
 reader = PdfReader(resume_file)
 
@@ -37,7 +52,21 @@ for page in reader.pages:
 # READ JOB DESCRIPTION FROM TEXT FILE
 # ==========================================
 
-job_file = input("\nEnter job description filename: ")
+job_files = [
+    file for file in os.listdir(".")
+    if file.lower().endswith(".txt")
+]
+
+print("\nAvailable Job Description Files:")
+
+for i, file in enumerate(job_files, start=1):
+    print(f"{i}. {file}")
+
+job_choice = int(
+    input("\nEnter the number of the job description: ")
+)
+
+job_file = job_files[job_choice - 1]
 
 with open(job_file, "r", encoding="utf-8") as file:
     job_description = file.read()
