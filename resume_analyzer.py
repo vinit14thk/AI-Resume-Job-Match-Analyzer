@@ -47,27 +47,28 @@ job_lower = job_description.lower()
 # SKILL ANALYSIS
 # ==========================================
 
-skills = [
+required_skills = [
     "python",
     "sql",
     "pandas",
     "numpy",
     "scikit-learn",
+    "git",
+    "github"
+]
+
+preferred_skills = [
     "machine learning",
     "data analysis",
     "business analytics",
     "statistics",
     "data visualization",
-    "git",
-    "github",
-    "java",
-    "c++",
-    "html",
     "communication",
     "problem-solving",
     "analytical thinking"
 ]
 
+skills = required_skills + preferred_skills
 
 matching_skills = []
 missing_skills = []
@@ -145,34 +146,50 @@ print("\nResume text extracted from PDF successfully!")
 print("\nAnalysis completed successfully!")
 
 # ==========================================
-# SKILL MATCH SCORE
+# WEIGHTED SKILL MATCH SCORE
 # ==========================================
 
-required_skills = [
-    skill for skill in skills
+required_job_skills = [
+    skill for skill in required_skills
     if skill in job_lower
 ]
 
-if required_skills:
+preferred_job_skills = [
+    skill for skill in preferred_skills
+    if skill in job_lower
+]
 
-    skill_match_score = (
-        len(matching_skills) / len(required_skills)
-    ) * 100
+required_matches = [
+    skill for skill in required_job_skills
+    if skill in resume_lower
+]
 
-else:
+preferred_matches = [
+    skill for skill in preferred_job_skills
+    if skill in resume_lower
+]
 
-    skill_match_score = 0
-
-
-print("\nSkill Match Score:")
-print(
-    f"{skill_match_score:.2f}%"
+required_score = (
+    len(required_matches) / len(required_job_skills) * 70
+    if required_job_skills else 0
 )
 
+preferred_score = (
+    len(preferred_matches) / len(preferred_job_skills) * 30
+    if preferred_job_skills else 0
+)
 
-print("\nTotal Job Skills:", len(required_skills))
-print("Matching Skills:", len(matching_skills))
-print("Missing Skills:", len(missing_skills))
+weighted_skill_score = required_score + preferred_score
+
+
+print("\nWeighted Skill Match Score:")
+print(f"{weighted_skill_score:.2f}%")
+
+print("\nRequired Skills:", len(required_job_skills))
+print("Required Skills Matched:", len(required_matches))
+
+print("Preferred Skills:", len(preferred_job_skills))
+print("Preferred Skills Matched:", len(preferred_matches))
 
 # ==========================================
 # RECOMMENDATIONS
@@ -193,19 +210,32 @@ else:
     print("Your resume covers all identified job skills!")
 
 # ==========================================
-# SKILL MATCH VISUALIZATION
+# WEIGHTED SKILL MATCH VISUALIZATION
 # ==========================================
 
-labels = ["Matching Skills", "Missing Skills"]
-values = [len(matching_skills), len(missing_skills)]
+categories = [
+    "Required Matched",
+    "Required Missing",
+    "Preferred Matched",
+    "Preferred Missing"
+]
 
-plt.figure(figsize=(8, 5))
+values = [
+    len(required_matches),
+    len(required_job_skills) - len(required_matches),
+    len(preferred_matches),
+    len(preferred_job_skills) - len(preferred_matches)
+]
 
-plt.bar(labels, values)
+plt.figure(figsize=(9, 5))
+
+plt.bar(categories, values)
 
 plt.title("Resume Skill Match Analysis")
 plt.xlabel("Skill Category")
 plt.ylabel("Number of Skills")
+
+plt.xticks(rotation=15)
 
 plt.tight_layout()
 
@@ -213,4 +243,4 @@ plt.savefig("skill_match_chart.png")
 
 plt.show()
 
-print("\nSkill match chart saved successfully!")
+print("\nSkill match chart updated successfully!")
