@@ -90,3 +90,20 @@ AI-Resume-Job-Match-Analyzer/
 
 └── skill\_match\_chart.png
 
+## Example Results
+
+- Resume–Job Match Score: 34.59%
+- Weighted Skill Match Score: 77.50%
+- Required Skills Matched: 7/7
+- Preferred Skills Matched: 2/8
+- Matching Skills: 9
+- Missing Skills: 6
+
+## Future Improvements
+
+- Generate detailed PDF analysis reports
+- Add interactive dashboard
+- Build a web-based interface
+- Improve skill extraction using advanced NLP models
+- Support multiple resume formats
+
