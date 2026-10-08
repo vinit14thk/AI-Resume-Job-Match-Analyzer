@@ -42,6 +42,14 @@ A Python-based resume analysis and job matching system that compares a resume wi
 - TF-IDF
 - Cosine Similarity
 
+## Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/vinit14thk/AI-Resume-Job-Match-Analyzer.git
+cd AI-Resume-Job-Match-Analyzer
+
 
 \## How It Works
 
