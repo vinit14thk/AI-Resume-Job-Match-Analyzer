@@ -18,6 +18,8 @@ def generate_report(
     tfidf_score,
     weighted_skill_score,
     overall_match_score,
+    skill_component,
+    similarity_component,
     match_level,
     required_job_skills,
     required_matches,
@@ -93,6 +95,8 @@ def generate_report(
         ["Metric", "Result"],
         ["TF-IDF Similarity", f"{tfidf_score:.2f}%"],
         ["Weighted Skill Score", f"{weighted_skill_score:.2f}%"],
+        ["Skill Match Contribution (70%)", f"{skill_component:.2f}%"],
+        ["TF-IDF Contribution (30%)", f"{similarity_component:.2f}%"],
         ["Overall Match Score", f"{overall_match_score:.2f}%"],
         ["Match Level", match_level]
     ]
