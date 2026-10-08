@@ -114,14 +114,15 @@ missing_skills = []
 
 for skill in skills:
 
-    if skill in job_lower:
+    skill_pattern = r"\b" + re.escape(skill) + r"\b"
 
-        if skill in resume_lower:
+    if re.search(skill_pattern, job_lower):
+
+        if re.search(skill_pattern, resume_lower):
             matching_skills.append(skill)
 
         else:
             missing_skills.append(skill)
-
 
 # ==========================================
 # TF-IDF MATCH SCORE
@@ -190,22 +191,22 @@ print("\nAnalysis completed successfully!")
 
 required_job_skills = [
     skill for skill in required_skills
-    if skill in job_lower
+    if re.search(r"\b" + re.escape(skill) + r"\b", job_lower)
 ]
 
 preferred_job_skills = [
     skill for skill in preferred_skills
-    if skill in job_lower
+    if re.search(r"\b" + re.escape(skill) + r"\b", job_lower)
 ]
 
 required_matches = [
     skill for skill in required_job_skills
-    if skill in resume_lower
+    if re.search(r"\b" + re.escape(skill) + r"\b", resume_lower)
 ]
 
 preferred_matches = [
     skill for skill in preferred_job_skills
-    if skill in resume_lower
+    if re.search(r"\b" + re.escape(skill) + r"\b", resume_lower)
 ]
 
 required_score = (
