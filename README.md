@@ -32,35 +32,35 @@ A Python-based resume analysis and job matching system that compares a resume wi
 
 
 
-\- Python
-
-\- Pandas
-
-\- Scikit-learn
-
-\- Matplotlib
-
-\- PyPDF
-
+- Python
+- Pandas
+- Scikit-learn
+- Matplotlib
+- PyPDF
+- ReportLab
+- Regular Expressions (Regex)
+- TF-IDF
+- Cosine Similarity
 
 
 \## How It Works
 
 
-
-1\. The system extracts text from the resume PDF.
-
-2\. The job description is loaded from job\_description.txt.
-
-3\. TF-IDF and cosine similarity are used to calculate text similarity.
-
-4\. The system checks for relevant technical and soft skills.
-
-5\. Matching and missing skills are identified.
-
-6\. Recommendations are generated.
-
-7\. A skill-match visualization is created.
+1. The system scans the project folder for available resume PDF files.
+2. The user selects a resume PDF for analysis.
+3. The system scans available job-description text files.
+4. The selected job description is loaded and processed.
+5. Resume text is extracted from the PDF using PyPDF.
+6. Skills are loaded dynamically from skills.txt.
+7. TF-IDF and cosine similarity are used to calculate text similarity.
+8. The system identifies required and preferred skills mentioned in the job description.
+9. Resume skills are matched using regular-expression-based phrase matching.
+10. A weighted skill-match score is calculated.
+11. An overall Resume–Job Match Score is generated.
+12. Matching and missing skills are identified.
+13. Skill improvement recommendations are generated.
+14. A visual skill-match chart is created using Matplotlib.
+15. A professional PDF analysis report is generated using ReportLab.
 
 
 
@@ -71,24 +71,17 @@ A Python-based resume analysis and job matching system that compares a resume wi
 ```text
 
 AI-Resume-Job-Match-Analyzer/
-
 │
-
-├── resume\_analyzer.py
-
-├── create\_resume.py
-
+├── resume_analyzer.py
+├── report_generator.py
+├── create_resume.py
 ├── resume.pdf
-
-├── job\_description.txt
-
+├── job_description.txt
+├── skills.txt
 ├── requirements.txt
-
 ├── .gitignore
-
 ├── README.md
-
-└── skill\_match\_chart.png
+└── skill_match_chart.png
 
 ## Example Results
 
@@ -107,4 +100,12 @@ AI-Resume-Job-Match-Analyzer/
 - Build a web-based interface
 - Improve skill extraction using advanced NLP models
 - Support multiple resume formats
+- Uses a configurable skill database through skills.txt
+- Generates automated PDF analysis reports
 
+## Generated Report
+
+After analysis, the system automatically generates:
+
+```text
+resume_analysis_report.pdf
