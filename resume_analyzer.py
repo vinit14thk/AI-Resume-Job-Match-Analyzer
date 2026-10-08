@@ -225,6 +225,21 @@ print(f"{weighted_skill_score:.2f}%")
 print("\nOverall Resume–Job Match Score:")
 print(f"{overall_match_score:.2f}%")
 
+if overall_match_score >= 80:
+    match_level = "Excellent Match"
+
+elif overall_match_score >= 60:
+    match_level = "Good Match"
+
+elif overall_match_score >= 40:
+    match_level = "Moderate Match"
+
+else:
+    match_level = "Low Match"
+
+
+print(f"Match Level: {match_level}")
+
 print("\nRequired Skills:", len(required_job_skills))
 print("Required Skills Matched:", len(required_matches))
 
