@@ -50,6 +50,33 @@ A Python-based resume analysis and job matching system that compares a resume wi
 git clone https://github.com/vinit14thk/AI-Resume-Job-Match-Analyzer.git
 cd AI-Resume-Job-Match-Analyzer
 
+## System Architecture
+
+```text
+Resume PDF
+    │
+    ▼
+PDF Text Extraction
+    │
+    ▼
+Text Preprocessing
+    │
+    ├───────────────┐
+    ▼               ▼
+TF-IDF          Skill Matching
+Similarity      (skills.txt)
+    │               │
+    └───────┬───────┘
+            ▼
+     Weighted Scoring
+            │
+            ▼
+   Overall Match Score
+            │
+      ┌─────┴─────┐
+      ▼           ▼
+Skill Chart    PDF Report
+
 
 \## How It Works
 
