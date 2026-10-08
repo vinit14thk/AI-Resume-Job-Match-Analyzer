@@ -137,6 +137,28 @@ The system also generates a visual skill-match chart and an automated PDF analys
 
 > These results are based on the included sample data and demonstrate the system's functionality. The overall match score is an analytical estimate, not a real hiring decision.
 
+### Scoring Method
+
+The overall Resume–Job Match Score combines two components:
+
+- *Weighted Skill Match — 70%*
+  - Required skills contribute 70% of the skill score.
+  - Preferred skills contribute 30% of the skill score.
+- *TF-IDF Text Similarity — 30%*
+  - Measures the textual similarity between the resume and job description using TF-IDF and cosine similarity.
+
+The final score is calculated as:
+
+```text
+Overall Match Score =
+(Weighted Skill Score × 0.70)
++
+(TF-IDF Similarity × 0.30)
+
+```
+
+This approach makes the score more explainable by combining explicit skill matching with overall text similarity.
+
 ## Future Improvements
 
 - Generate detailed PDF analysis reports
