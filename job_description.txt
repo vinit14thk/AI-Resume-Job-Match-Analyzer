@@ -1,0 +1,11 @@
+We are looking for a data analytics and machine learning intern.
+
+Required skills:
+Python, SQL, Pandas, NumPy, Scikit-learn, Git and GitHub.
+
+Preferred skills:
+Machine learning, data analysis, business analytics,
+statistics and data visualization.
+
+Candidates should also demonstrate communication,
+problem-solving and analytical thinking skills.
