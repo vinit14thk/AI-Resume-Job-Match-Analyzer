@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from pypdf import PdfReader
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
+from report_generator import generate_report
 
 print("=" * 60)
 print("AI RESUME & JOB MATCH ANALYZER")
@@ -306,3 +306,18 @@ plt.savefig("skill_match_chart.png")
 plt.show()
 
 print("\nSkill match chart updated successfully!")
+
+generate_report(
+    resume_file=resume_file,
+    job_file=job_file,
+    tfidf_score=match_percentage,
+    weighted_skill_score=weighted_skill_score,
+    overall_match_score=overall_match_score,
+    match_level=match_level,
+    required_job_skills=required_job_skills,
+    required_matches=required_matches,
+    preferred_job_skills=preferred_job_skills,
+    preferred_matches=preferred_matches,
+    matching_skills=matching_skills,
+    missing_skills=missing_skills
+)
