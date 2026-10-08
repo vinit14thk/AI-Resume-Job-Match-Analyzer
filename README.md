@@ -93,13 +93,22 @@ AI-Resume-Job-Match-Analyzer/
 
 ## Example Results
 
-- TF-IDF Resume–Job Similarity: 34.59%
-- Weighted Skill Match Score: 77.50%
-- Overall Resume–Job Match Score: 64.63%
-- Required Skills Matched: 7/7
-- Preferred Skills Matched: 2/8
-- Matching Skills: 9
-- Missing Skills: 6
+Using the included sample resume and job description, the system produced:
+
+| Metric | Result |
+|---|---:|
+| TF-IDF Resume–Job Similarity | 34.59% |
+| Weighted Skill Match Score | 77.50% |
+| Overall Resume–Job Match Score | 64.63% |
+| Match Level | Good Match |
+| Required Skills Matched | 7/7 |
+| Preferred Skills Matched | 2/8 |
+| Matching Skills | 9 |
+| Missing Skills | 6 |
+
+The system also generates a visual skill-match chart and an automated PDF analysis report.
+
+> These results are based on the included sample data and demonstrate the system's functionality. The overall match score is an analytical estimate, not a real hiring decision.
 
 ## Future Improvements
 
