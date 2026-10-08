@@ -1,0 +1,18 @@
+REQUIRED
+python
+sql
+pandas
+numpy
+scikit-learn
+git
+github
+
+PREFERRED
+machine learning
+data analysis
+business analytics
+statistics
+data visualization
+communication
+problem-solving
+analytical thinking

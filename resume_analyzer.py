@@ -55,6 +55,7 @@ for page in reader.pages:
 job_files = [
     file for file in os.listdir(".")
     if file.lower().endswith(".txt")
+    and file.lower() != "skills.txt"
 ]
 
 print("\nAvailable Job Description Files:")
@@ -80,26 +81,31 @@ job_lower = job_description.lower()
 # SKILL ANALYSIS
 # ==========================================
 
-required_skills = [
-    "python",
-    "sql",
-    "pandas",
-    "numpy",
-    "scikit-learn",
-    "git",
-    "github"
-]
+required_skills = []
+preferred_skills = []
 
-preferred_skills = [
-    "machine learning",
-    "data analysis",
-    "business analytics",
-    "statistics",
-    "data visualization",
-    "communication",
-    "problem-solving",
-    "analytical thinking"
-]
+current_section = None
+
+with open("skills.txt", "r", encoding="utf-8") as file:
+    for line in file:
+        line = line.strip()
+
+        if not line:
+            continue
+
+        if line.upper() == "REQUIRED":
+            current_section = "required"
+            continue
+
+        if line.upper() == "PREFERRED":
+            current_section = "preferred"
+            continue
+
+        if current_section == "required":
+            required_skills.append(line.lower())
+
+        elif current_section == "preferred":
+            preferred_skills.append(line.lower())
 
 skills = required_skills + preferred_skills
 
