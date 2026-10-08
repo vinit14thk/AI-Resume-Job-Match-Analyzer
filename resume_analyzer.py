@@ -16,7 +16,9 @@ print("=" * 60)
 # READ RESUME FROM PDF
 # ==========================================
 
-reader = PdfReader("resume.pdf")
+resume_file = input("\nEnter resume PDF filename: ")
+
+reader = PdfReader(resume_file)
 
 resume_text = ""
 
@@ -35,7 +37,9 @@ for page in reader.pages:
 # READ JOB DESCRIPTION FROM TEXT FILE
 # ==========================================
 
-with open("job_description.txt", "r", encoding="utf-8") as file:
+job_file = input("\nEnter job description filename: ")
+
+with open(job_file, "r", encoding="utf-8") as file:
     job_description = file.read()
 
 # Convert text to lowercase
