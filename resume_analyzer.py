@@ -250,8 +250,21 @@ elif overall_match_score >= 40:
 else:
     match_level = "Low Match"
 
+if overall_match_score >= 80:
+    job_recommendation = "Strong Fit - Apply"
+
+elif overall_match_score >= 60:
+    job_recommendation = "Good Fit - Apply after improving missing skills"
+
+elif overall_match_score >= 40:
+    job_recommendation = "Moderate Fit - Consider improving skills first"
+
+else:
+    job_recommendation = "Low Fit - Significant skill gaps"
+
 
 print(f"Match Level: {match_level}")
+print(f"Job Recommendation: {job_recommendation}")
 
 print("\nRequired Skills:", len(required_job_skills))
 print("Required Skills Matched:", len(required_matches))
@@ -322,6 +335,7 @@ generate_report(
     skill_component=skill_component,
     similarity_component=similarity_component,
     match_level=match_level,
+    job_recommendation=job_recommendation,
     required_job_skills=required_job_skills,
     required_matches=required_matches,
     preferred_job_skills=preferred_job_skills,

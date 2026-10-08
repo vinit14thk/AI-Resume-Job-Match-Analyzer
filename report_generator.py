@@ -21,6 +21,7 @@ def generate_report(
     skill_component,
     similarity_component,
     match_level,
+    job_recommendation,
     required_job_skills,
     required_matches,
     preferred_job_skills,
@@ -98,8 +99,9 @@ def generate_report(
         ["Skill Match Contribution (70%)", f"{skill_component:.2f}%"],
         ["TF-IDF Contribution (30%)", f"{similarity_component:.2f}%"],
         ["Overall Match Score", f"{overall_match_score:.2f}%"],
-        ["Match Level", match_level]
-    ]
+        ["Match Level", match_level],
+        ["Job Recommendation", job_recommendation]  
+  ]
 
     score_table = Table(
         score_data,
