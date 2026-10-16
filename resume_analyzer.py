@@ -105,22 +105,61 @@ with open("skills.txt", "r", encoding="utf-8") as file:
         elif current_section == "preferred":
             preferred_skills.append(line.lower())
 
+# ==========================================
+# SKILL MATCHING WITH SYNONYMS
+# ==========================================
+
+resume_lower = resume_text.lower()
+job_lower = job_description.lower()
+
+skill_synonyms = {
+    "python": ["python"],
+    "sql": ["sql", "structured query language"],
+    "pandas": ["pandas"],
+    "numpy": ["numpy"],
+    "scikit-learn": ["scikit-learn", "sklearn"],
+    "machine learning": ["machine learning", "ml"],
+    "data analysis": ["data analysis", "analyzing data", "analysing data"],
+    "statistics": ["statistics", "statistical analysis"],
+    "data visualization": [
+        "data visualization",
+        "data visualisation",
+        "data visualization tools",
+        "data visualisation tools"
+    ],
+    "communication": ["communication", "communicating"],
+    "problem-solving": ["problem-solving", "problem solving"],
+    "analytical thinking": ["analytical thinking", "analytical skills"],
+    "git": ["git"],
+    "github": ["github"],
+    "business analytics": ["business analytics", "business analysis"]
+}
+
+
+def skill_is_present(skill, text):
+    variants = skill_synonyms.get(skill.lower(), [skill.lower()])
+
+    for variant in variants:
+        pattern = r"(?<!\w)" + re.escape(variant) + r"(?!\w)"
+
+        if re.search(pattern, text):
+            return True
+
+    return False
+
+
 skills = required_skills + preferred_skills
 
 matching_skills = []
 missing_skills = []
 
 for skill in skills:
-
-    skill_pattern = r"\b" + re.escape(skill) + r"\b"
-
-    if re.search(skill_pattern, job_lower):
-
-        if re.search(skill_pattern, resume_lower):
+    if skill_is_present(skill, job_lower):
+        if skill_is_present(skill, resume_lower):
             matching_skills.append(skill)
-
         else:
             missing_skills.append(skill)
+
 
 # ==========================================
 # TEXT OVERLAP MATCH SCORE
@@ -195,22 +234,22 @@ print("\nAnalysis completed successfully!")
 
 required_job_skills = [
     skill for skill in required_skills
-    if re.search(r"\b" + re.escape(skill) + r"\b", job_lower)
+    if skill_is_present(skill, job_lower)
 ]
 
 preferred_job_skills = [
     skill for skill in preferred_skills
-    if re.search(r"\b" + re.escape(skill) + r"\b", job_lower)
+    if skill_is_present(skill, job_lower)
 ]
 
 required_matches = [
     skill for skill in required_job_skills
-    if re.search(r"\b" + re.escape(skill) + r"\b", resume_lower)
+    if skill_is_present(skill, resume_lower)
 ]
 
 preferred_matches = [
     skill for skill in preferred_job_skills
-    if re.search(r"\b" + re.escape(skill) + r"\b", resume_lower)
+    if skill_is_present(skill, resume_lower)
 ]
 
 required_score = (
