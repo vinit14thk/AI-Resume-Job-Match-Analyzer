@@ -118,7 +118,7 @@ skill_synonyms = {
     "pandas": ["pandas"],
     "numpy": ["numpy"],
     "scikit-learn": ["scikit-learn", "sklearn"],
-    "machine learning": ["machine learning", "ml"],
+    "machine learning": ["machine learning"],
     "data analysis": ["data analysis", "analyzing data", "analysing data"],
     "statistics": ["statistics", "statistical analysis"],
     "data visualization": [
@@ -132,7 +132,7 @@ skill_synonyms = {
     "analytical thinking": ["analytical thinking", "analytical skills"],
     "git": ["git"],
     "github": ["github"],
-    "business analytics": ["business analytics", "business analysis"]
+    "business analytics": ["business analytics"]
 }
 
 
