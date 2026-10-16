@@ -1,0 +1,49 @@
+ALEX MORGAN
+Sample Data Analyst Resume
+Email: alex.morgan@example.com
+GitHub: https://github.com/example
+
+PROFESSIONAL SUMMARY
+Entry-level data analyst with foundational knowledge of Python, SQL, data analysis, statistics, and business analytics. Interested in transforming data into useful insights and supporting data-driven decisions.
+
+TECHNICAL SKILLS
+
+- Python
+- SQL
+- Pandas
+- NumPy
+- Data Analysis
+- Statistics
+- Data Visualization
+- Matplotlib
+- Machine Learning Fundamentals
+- Git and GitHub
+- Excel
+- Business Analytics
+
+PROJECTS
+
+Sales Data Analysis
+
+- Used Python and Pandas to clean and analyze sample sales data.
+- Applied statistical methods to identify trends and patterns.
+- Created charts using Matplotlib to communicate findings.
+
+Customer Insights Dashboard
+
+- Used SQL to query a fictional customer dataset.
+- Summarized customer activity and business performance.
+- Presented key findings through visualizations.
+
+EDUCATION
+Bachelor's Degree in Computer Applications
+Sample University
+Expected Graduation: 2027
+
+CORE COMPETENCIES
+
+- Analytical Thinking
+- Problem-Solving
+- Communication
+- Teamwork
+- Attention to Detail

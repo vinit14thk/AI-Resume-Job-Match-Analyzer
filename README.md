@@ -165,6 +165,23 @@ skill_match_chart.png
 
 The PDF contains the analysis results and recommendations, while the PNG file visualizes the skill-match information.
 
+Sample Files
+
+A fictional sample resume is included to help users test the analyzer without sharing personal information.
+
+- "sample_resume.pdf" — fictional resume for testing.
+- "job_description.txt" — example job description.
+
+Run the Analyzer
+
+1. Install the required dependencies.
+2. Run "python resume_analyzer.py".
+3. Select the resume PDF when prompted. Choose "sample_resume.pdf" if it appears in the list.
+4. Select a job description file.
+5. Review the match scores, missing skills, recommendations, chart, and generated PDF report.
+
+Privacy note: Use fictional or anonymized resumes when sharing test data publicly. Do not upload personal resumes without permission.
+
 Future Improvements
 
 - Build a web-based interface.

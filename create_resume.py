@@ -1,131 +1,89 @@
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer
+)
 from reportlab.lib.styles import getSampleStyleSheet
 
-
 pdf = SimpleDocTemplate(
-    "resume.pdf",
+    "sample_resume.pdf",
     pagesize=A4
 )
 
 styles = getSampleStyleSheet()
-
-title_style = styles["Title"]
-heading_style = styles["Heading2"]
-body_style = styles["BodyText"]
-
-
 content = []
 
 content.append(
-    Paragraph("Vinit Thakran", title_style)
+    Paragraph("Alex Morgan", styles["Title"])
 )
-
 content.append(
     Paragraph(
-        "BCA Student | Python | Data Analytics | Machine Learning",
-        body_style
+        "Sample Data Analyst Resume | Fictional Example",
+        styles["BodyText"]
     )
 )
-
 content.append(Spacer(1, 15))
 
-
-content.append(
-    Paragraph("Education", heading_style)
-)
-
+content.append(Paragraph("Professional Summary", styles["Heading2"]))
 content.append(
     Paragraph(
-        "Bachelor's in Computer Application Hons with Research — "
-        "Maharshi Dayanand University | Expected Graduation: 2028",
-        body_style
+        "Entry-level data analyst with foundational knowledge "
+        "of Python, SQL, statistics and business analytics.",
+        styles["BodyText"]
     )
 )
-
 content.append(Spacer(1, 10))
 
-
-content.append(
-    Paragraph("Technical Skills", heading_style)
-)
-
+content.append(Paragraph("Education", styles["Heading2"]))
 content.append(
     Paragraph(
-        "Python, C, C++, Java, HTML, SQL, Pandas, NumPy, "
-        "Scikit-learn, Matplotlib, Git, GitHub, DBMS, OOPS, "
-        "Data Structures and Algorithms",
-        body_style
+        "Bachelor's Degree in Computer Applications "
+        " | Sample University | Expected Graduation: 2027",
+        styles["BodyText"]
     )
 )
-
 content.append(Spacer(1, 10))
 
-
-content.append(
-    Paragraph("Projects", heading_style)
-)
-
+content.append(Paragraph("Technical Skills", styles["Heading2"]))
 content.append(
     Paragraph(
-        "Customer Churn Prediction & Business Analytics System — "
-        "Built a Random Forest machine learning system for customer "
-        "churn prediction, risk scoring and business analytics.",
-        body_style
+        "Python, SQL, Pandas, NumPy, Data Analysis, Statistics, "
+        "Data Visualization, Matplotlib, Machine Learning, "
+        "Git, GitHub, Excel and Business Analytics.",
+        styles["BodyText"]
     )
 )
+content.append(Spacer(1, 10))
 
+content.append(Paragraph("Projects", styles["Heading2"]))
+content.append(
+    Paragraph(
+        "Sales Data Analysis - Analyzed fictional sales data "
+        "using Python and Pandas and created charts with Matplotlib.",
+        styles["BodyText"]
+    )
+)
 content.append(Spacer(1, 6))
-
 content.append(
     Paragraph(
-        "Fraud & Anomaly Detection System — Developed a machine "
-        "learning-based fraud detection system using Isolation Forest.",
-        body_style
+        "Customer Insights - Used SQL to query sample customer "
+        "data and summarize business performance.",
+        styles["BodyText"]
     )
 )
-
-content.append(Spacer(1, 6))
-
-content.append(
-    Paragraph(
-        "Financial Transaction Analytics System — Built a Python, "
-        "Pandas and SQLite-based financial analytics system.",
-        body_style
-    )
-)
-
 content.append(Spacer(1, 10))
 
-
-content.append(
-    Paragraph("Internship", heading_style)
-)
-
+content.append(Paragraph("Core Competencies", styles["Heading2"]))
 content.append(
     Paragraph(
-        "ESS Institute — Web & Graphic Designer Intern | June–July 2026. "
-        "Worked with Canva, HTML, Photoshop and WordPress.",
-        body_style
+        "Analytical Thinking, Problem-Solving, Communication, "
+        "Teamwork and Attention to Detail.",
+        styles["BodyText"]
     )
 )
-
-content.append(Spacer(1, 10))
-
-
-content.append(
-    Paragraph("Languages", heading_style)
-)
-
-content.append(
-    Paragraph(
-        "English, German (Basic), Spanish (Basic)",
-        body_style
-    )
-)
-
 
 pdf.build(content)
 
-print("Sample resume PDF created successfully!")
-print("Output file: resume.pdf")
+print("Fictional sample resume PDF created successfully!")
+print("Output file: sample_resume.pdf")
