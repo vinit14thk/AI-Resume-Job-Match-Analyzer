@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 from pypdf import PdfReader
 from report_generator import generate_report
+from skill_matcher import skill_is_present
 
 print("=" * 60)
 print("AI RESUME & JOB MATCH ANALYZER")
@@ -111,42 +112,6 @@ with open("skills.txt", "r", encoding="utf-8") as file:
 
 resume_lower = resume_text.lower()
 job_lower = job_description.lower()
-
-skill_synonyms = {
-    "python": ["python"],
-    "sql": ["sql", "structured query language"],
-    "pandas": ["pandas"],
-    "numpy": ["numpy"],
-    "scikit-learn": ["scikit-learn", "sklearn"],
-    "machine learning": ["machine learning"],
-    "data analysis": ["data analysis", "analyzing data", "analysing data"],
-    "statistics": ["statistics", "statistical analysis"],
-    "data visualization": [
-        "data visualization",
-        "data visualisation",
-        "data visualization tools",
-        "data visualisation tools"
-    ],
-    "communication": ["communication", "communicating"],
-    "problem-solving": ["problem-solving", "problem solving"],
-    "analytical thinking": ["analytical thinking", "analytical skills"],
-    "git": ["git"],
-    "github": ["github"],
-    "business analytics": ["business analytics"]
-}
-
-
-def skill_is_present(skill, text):
-    variants = skill_synonyms.get(skill.lower(), [skill.lower()])
-
-    for variant in variants:
-        pattern = r"(?<!\w)" + re.escape(variant) + r"(?!\w)"
-
-        if re.search(pattern, text):
-            return True
-
-    return False
-
 
 skills = required_skills + preferred_skills
 

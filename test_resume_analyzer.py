@@ -1,10 +1,10 @@
 ﻿import os
-import re
 import subprocess
 import sys
 import unittest
 from pathlib import Path
 
+from skill_matcher import skill_is_present
 
 PROJECT_DIR = Path(__file__).resolve().parent
 
@@ -43,27 +43,6 @@ class ResumeAnalyzerTests(unittest.TestCase):
         self.assertIn("machine learning", missing_section)
 
     def test_skill_synonyms(self):
-        skill_synonyms = {
-            "scikit-learn": ["scikit-learn", "sklearn"],
-            "data analysis": [
-                "data analysis",
-                "analyzing data",
-                "analysing data"
-            ]
-        }
-
-        def skill_is_present(skill, text):
-            variants = skill_synonyms.get(
-                skill.lower(), [skill.lower()]
-            )
-
-            for variant in variants:
-                pattern = r"(?<!\w)" + re.escape(variant) + r"(?!\w)"
-                if re.search(pattern, text.lower()):
-                    return True
-
-            return False
-
         self.assertTrue(
             skill_is_present("scikit-learn", "Experience with sklearn")
         )

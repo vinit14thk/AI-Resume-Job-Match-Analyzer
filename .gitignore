@@ -6,3 +6,9 @@ venv/
 .env.*
 resume_analysis_report.pdf
 skill_match_chart.png
+# Python cache
+_pycache_/
+
+# Keep personal resume and local backup private
+resume.pdf
+resume_analyzer_backup.py
