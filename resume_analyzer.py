@@ -357,7 +357,7 @@ plt.xticks(rotation=15)
 
 plt.tight_layout()
 
-plt.savefig("skill_match_chart.png")
+plt.savefig("skill_match_chart.png", format="png", bbox_inches="tight")
 
 plt.show()
 
