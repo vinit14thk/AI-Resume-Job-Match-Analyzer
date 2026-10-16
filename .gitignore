@@ -1,5 +1,8 @@
 _pycache_/
-*.pyc
+*.py[cod]
 .venv/
+venv/
 .env
+.env.*
 resume_analysis_report.pdf
+skill_match_chart.png

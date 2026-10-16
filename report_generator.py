@@ -27,7 +27,8 @@ def generate_report(
     preferred_job_skills,
     preferred_matches,
     matching_skills,
-    missing_skills
+    missing_skills,
+    skill_gap_priority
 ):
 
     output_file = "resume_analysis_report.pdf"
@@ -229,6 +230,33 @@ def generate_report(
     story.append(
         Paragraph(
             missing_text,
+            normal_style
+        )
+    )
+
+    story.append(
+        Paragraph(
+            "Skill Gap Priority",
+            heading_style
+        )
+    )
+
+    if skill_gap_priority:
+
+        priority_text = "<br/>".join(
+            [
+                f"{skill}: <b>{priority}</b>"
+                for skill, priority in skill_gap_priority
+            ]
+        )
+
+    else:
+
+        priority_text = "No skill gaps identified."
+
+    story.append(
+        Paragraph(
+            priority_text,
             normal_style
         )
     )

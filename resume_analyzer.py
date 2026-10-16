@@ -4,8 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from pypdf import PdfReader
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 from report_generator import generate_report
 
 print("=" * 60)
@@ -125,26 +123,32 @@ for skill in skills:
             missing_skills.append(skill)
 
 # ==========================================
-# TF-IDF MATCH SCORE
+# TEXT OVERLAP MATCH SCORE
 # ==========================================
 
-documents = [
-    resume_text,
-    job_description
-]
+resume_lower = resume_text.lower()
+job_lower = job_description.lower()
 
-vectorizer = TfidfVectorizer(
-    stop_words="english"
-)
+resume_words = set(re.findall(r"\b[a-zA-Z0-9+#.]+\b", resume_lower))
+job_words = set(re.findall(r"\b[a-zA-Z0-9+#.]+\b", job_lower))
 
-tfidf_matrix = vectorizer.fit_transform(documents)
+stop_words = {
+    "the", "and", "for", "with", "that", "this", "from",
+    "are", "you", "your", "our", "will", "have", "has",
+    "was", "were", "into", "about", "job", "role", "work",
+    "experience", "skills", "skill", "candidate", "required",
+    "preferred"
+}
 
-similarity_score = cosine_similarity(
-    tfidf_matrix[0:1],
-    tfidf_matrix[1:2]
-)[0][0]
+resume_words -= stop_words
+job_words -= stop_words
 
-match_percentage = similarity_score * 100
+if job_words:
+    match_percentage = (
+        len(resume_words & job_words) / len(job_words)
+    ) * 100
+else:
+    match_percentage = 0.0
 
 
 # ==========================================
@@ -236,7 +240,7 @@ print(f"{overall_match_score:.2f}%")
 
 print("\nScore Breakdown:")
 print(f"Skill Match Contribution (70%): {skill_component:.2f}%")
-print(f"TF-IDF Similarity Contribution (30%): {similarity_component:.2f}%")
+print(f"Text Overlap Similarity Contribution (30%): {similarity_component:.2f}%")
 
 if overall_match_score >= 80:
     match_level = "Excellent Match"
@@ -262,6 +266,33 @@ elif overall_match_score >= 40:
 else:
     job_recommendation = "Low Fit - Significant skill gaps"
 
+skill_gap_priority = []
+
+for skill in missing_skills:
+
+    if skill in required_job_skills:
+        priority = "HIGH"
+
+    elif skill in preferred_job_skills:
+        priority = "MEDIUM"
+
+    else:
+        priority = "LOW"
+
+    skill_gap_priority.append(
+        (skill, priority)
+    )
+
+priority_order = {
+    "HIGH": 1,
+    "MEDIUM": 2,
+    "LOW": 3
+}
+
+skill_gap_priority.sort(
+    key=lambda item: priority_order[item[1]]
+)
+
 
 print(f"Match Level: {match_level}")
 print(f"Job Recommendation: {job_recommendation}")
@@ -275,6 +306,12 @@ print("Preferred Skills Matched:", len(preferred_matches))
 # ==========================================
 # RECOMMENDATIONS
 # ==========================================
+
+print("\nSkill Gap Priority:")
+print("-" * 40)
+
+for skill, priority in skill_gap_priority:
+    print(f"{skill}: {priority}")
 
 print("\nRecommendations:")
 print("-" * 40)
@@ -341,5 +378,6 @@ generate_report(
     preferred_job_skills=preferred_job_skills,
     preferred_matches=preferred_matches,
     matching_skills=matching_skills,
-    missing_skills=missing_skills
+    missing_skills=missing_skills,
+    skill_gap_priority=skill_gap_priority
 )

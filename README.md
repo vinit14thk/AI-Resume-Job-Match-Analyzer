@@ -1,177 +1,181 @@
-\# AI Resume \& Job Match Analyzer
+AI Resume & Job Match Analyzer
 
+A Python-based resume analysis and job matching system that compares a resume with a job description, evaluates skill compatibility, identifies skill gaps, and generates an automated PDF report and visual chart.
 
+Features
 
-A Python-based resume analysis and job matching system that compares a resume with a job description using NLP and machine learning techniques.
+- Extracts text from resume PDF files.
+- Reads job descriptions from text files.
+- Calculates text-overlap similarity between resumes and job descriptions.
+- Calculates a weighted skill-match score.
+- Identifies matching and missing skills.
+- Prioritizes skill gaps for improvement.
+- Generates skill improvement recommendations.
+- Creates a visual skill-match chart.
+- Generates an automated PDF analysis report.
+- Supports multiple resume PDFs and job description files.
 
-
-
-\## Features
-
-
-
-\- Extracts text from resume PDF files
-
-\- Reads job descriptions from text files
-
-\- Calculates Resume–Job similarity using TF-IDF
-
-\- Calculates skill match percentage
-
-\- Identifies matching skills
-
-\- Identifies missing skills
-
-\- Generates skill improvement recommendations
-
-\- Creates a visual skill-match chart
-
-
-
-\## Technologies Used
-
-
+Technologies Used
 
 - Python
 - Pandas
-- Scikit-learn
 - Matplotlib
 - PyPDF
 - ReportLab
 - Regular Expressions (Regex)
-- TF-IDF
-- Cosine Similarity
+- Text-overlap analysis
+- SQLite (if enabled in the current implementation)
 
-## Installation & Setup
+Installation & Setup
 
-### 1. Clone the Repository
+1. Clone the Repository
 
-```bash
 git clone https://github.com/vinit14thk/AI-Resume-Job-Match-Analyzer.git
 cd AI-Resume-Job-Match-Analyzer
 
-## System Architecture
+2. Install Dependencies
 
-```text
+Make sure Python is installed, then run:
+
+python -m pip install -r requirements.txt
+
+3. Run the Analyzer
+
+python resume_analyzer.py
+
+Follow the prompts to select a resume PDF and a job description file.
+
+System Architecture
+
 Resume PDF
-    │
-    ▼
+    |
+    v
 PDF Text Extraction
-    │
-    ▼
+    |
+    v
 Text Preprocessing
-    │
-    ├───────────────┐
-    ▼               ▼
-TF-IDF          Skill Matching
-Similarity      (skills.txt)
-    │               │
-    └───────┬───────┘
-            ▼
-     Weighted Scoring
-            │
-            ▼
-   Overall Match Score
-            │
-      ┌─────┴─────┐
-      ▼           ▼
-Skill Chart    PDF Report
+    |
+    +-------------------+
+    |                   |
+    v                   v
+Text Overlap        Skill Matching
+Analysis            (skills.txt)
+    |                   |
+    +---------+---------+
+              |
+              v
+       Weighted Scoring
+              |
+              v
+      Overall Match Score
+              |
+        +-----+-----+
+        |           |
+        v           v
+    Skill Chart   PDF Report
 
-
-\## How It Works
-
+How It Works
 
 1. The system scans the project folder for available resume PDF files.
-2. The user selects a resume PDF for analysis.
-3. The system scans available job-description text files.
-4. The selected job description is loaded and processed.
-5. Resume text is extracted from the PDF using PyPDF.
-6. Skills are loaded dynamically from skills.txt.
-7. TF-IDF and cosine similarity are used to calculate text similarity.
-8. The system identifies required and preferred skills mentioned in the job description.
-9. Resume skills are matched using regular-expression-based phrase matching.
-10. A weighted skill-match score is calculated.
-11. An overall Resume–Job Match Score is generated.
-12. Matching and missing skills are identified.
-13. Skill improvement recommendations are generated.
-14. A visual skill-match chart is created using Matplotlib.
-15. A professional PDF analysis report is generated using ReportLab.
+2. The user selects a resume for analysis.
+3. The system lists available job-description text files.
+4. The selected job description is loaded.
+5. Resume text is extracted using PyPDF.
+6. The resume and job description are converted to lowercase and processed into word sets.
+7. Common stop words are removed.
+8. Text-overlap similarity is calculated from shared words.
+9. Required and preferred skills are identified from the job description and "skills.txt".
+10. Resume skills are matched using regular expressions.
+11. A weighted skill-match score is calculated.
+12. The overall Resume–Job Match Score is generated.
+13. Matching and missing skills are displayed.
+14. Skill improvement recommendations are generated.
+15. Matplotlib creates a skill-match chart.
+16. ReportLab generates a PDF analysis report.
 
-
-
-\## Project Structure
-
-
-
-```text
+Project Structure
 
 AI-Resume-Job-Match-Analyzer/
-│
+|
 ├── resume_analyzer.py
 ├── report_generator.py
 ├── create_resume.py
-├── resume.pdf
 ├── job_description.txt
 ├── skills.txt
 ├── requirements.txt
 ├── .gitignore
 ├── README.md
+├── resume.pdf
+├── resume_analysis_report.pdf
 └── skill_match_chart.png
 
-## Example Results
+The PDF report and chart are generated when the analyzer runs. The ".venv" folder contains the local Python environment and should generally not be committed to GitHub.
 
-Using the included sample resume and job description, the system produced:
+Example Results
 
-| Metric | Result |
-|---|---:|
-| TF-IDF Resume–Job Similarity | 34.59% |
-| Weighted Skill Match Score | 77.50% |
-| Overall Resume–Job Match Score | 64.63% |
-| Match Level | Good Match |
-| Required Skills Matched | 7/7 |
-| Preferred Skills Matched | 2/8 |
-| Matching Skills | 9 |
-| Missing Skills | 6 |
+Using the included sample resume and job description, the latest successful run produced:
 
-The system also generates a visual skill-match chart and an automated PDF analysis report.
+Metric| Result
+Text-overlap similarity| 51.72%
+Weighted skill-match score| 77.50%
+Overall Resume–Job Match Score| 69.77%
+Match level| Good Match
+Required skills matched| 7/7
+Preferred skills matched| 2/8
+Matching skills identified| 9
+Missing skills identified| 6
 
-> These results are based on the included sample data and demonstrate the system's functionality. The overall match score is an analytical estimate, not a real hiring decision.
+The system also generates a skill-match chart and an automated PDF analysis report.
 
-### Scoring Method
+These results are based on the included sample data. They demonstrate the application's functionality; they do not predict hiring decisions or guarantee suitability for a particular job.
 
-The overall Resume–Job Match Score combines two components:
+Scoring Method
 
-- *Weighted Skill Match — 70%*
-  - Required skills contribute 70% of the skill score.
-  - Preferred skills contribute 30% of the skill score.
-- *TF-IDF Text Similarity — 30%*
-  - Measures the textual similarity between the resume and job description using TF-IDF and cosine similarity.
+The overall Resume–Job Match Score combines two components.
+
+1. Weighted Skill Match — 70%
+
+- Required skills contribute 70% of the skill score.
+- Preferred skills contribute 30% of the skill score.
+
+2. Text-overlap Similarity — 30%
+
+The program compares sets of words from the resume and job description after removing selected common words.
+
+The text-overlap percentage is calculated as:
+
+Text Overlap Similarity =
+(Shared Relevant Words / Job Description Words) × 100
 
 The final score is calculated as:
 
-```text
 Overall Match Score =
 (Weighted Skill Score × 0.70)
 +
-(TF-IDF Similarity × 0.30)
+(Text Overlap Similarity × 0.30)
 
-```
+This is a straightforward word-overlap method, not TF-IDF or cosine similarity. It provides a simple estimate of textual overlap and should not be interpreted as a validated measure of hiring suitability.
 
-This approach makes the score more explainable by combining explicit skill matching with overall text similarity.
+Generated Outputs
 
-## Future Improvements
+After analysis, the system generates:
 
-- Generate detailed PDF analysis reports
-- Add interactive dashboard
-- Build a web-based interface
-- Improve skill extraction using advanced NLP models
-- Support multiple resume formats
-- Uses a configurable skill database through skills.txt
-- Generates automated PDF analysis reports
-
-## Generated Report
-
-After analysis, the system automatically generates:
-
-```text
 resume_analysis_report.pdf
+skill_match_chart.png
+
+The PDF contains the analysis results and recommendations, while the PNG file visualizes the skill-match information.
+
+Future Improvements
+
+- Build a web-based interface.
+- Add an interactive analytics dashboard.
+- Improve skill extraction using advanced NLP techniques.
+- Support DOCX resumes in addition to PDF.
+- Add more sophisticated text similarity algorithms.
+- Expand the skill database and job-description templates.
+- Add automated testing and input validation.
+- Improve report customization and visual design.
+
+Author
+
+GitHub: "vinit14thk" (https://github.com/vinit14thk)
