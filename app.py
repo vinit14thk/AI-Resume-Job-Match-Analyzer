@@ -134,17 +134,41 @@ st.markdown("""
 
 st.markdown(
     """
-    <div style="background-color:#111C32; padding:28px; border-radius:18px;">
-        <p style="color:#60A5FA; font-size:12px; font-weight:bold;">
+    <div style="background:linear-gradient(135deg,#111C32,#172554);
+                padding:28px;border-radius:18px;border:1px solid #263754;">
+        <p style="color:#60A5FA;font-size:12px;font-weight:bold;letter-spacing:2px;">
             CAREER INTELLIGENCE PLATFORM
         </p>
-        <h1 style="color:#F8FAFC; font-size:34px;">
+        <h1 style="color:#F8FAFC;font-size:34px;">
             AI Resume &amp; Job Match Analyzer
         </h1>
-        <p style="color:#CBD5E1; font-size:16px;">
-            Discover skill gaps, evaluate job alignment, and turn
-            your analysis into an actionable career plan.
+        <p style="color:#CBD5E1;font-size:16px;">
+            Compare your resume with a job description, discover skill gaps,
+            and build a plan to improve your job readiness.
         </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin:18px 0;">
+        <div style="flex:1;min-width:150px;background:#111C32;padding:18px;border-radius:12px;border:1px solid #263754;">
+            <p style="color:#60A5FA;font-weight:bold;">STEP 01</p>
+            <h3 style="color:#F8FAFC;">Upload Resume</h3>
+            <p style="color:#CBD5E1;">Choose your PDF resume.</p>
+        </div>
+        <div style="flex:1;min-width:150px;background:#111C32;padding:18px;border-radius:12px;border:1px solid #263754;">
+            <p style="color:#60A5FA;font-weight:bold;">STEP 02</p>
+            <h3 style="color:#F8FAFC;">Add Job Description</h3>
+            <p style="color:#CBD5E1;">Paste the job requirements.</p>
+        </div>
+        <div style="flex:1;min-width:150px;background:#111C32;padding:18px;border-radius:12px;border:1px solid #263754;">
+            <p style="color:#60A5FA;font-weight:bold;">STEP 03</p>
+            <h3 style="color:#F8FAFC;">Analyze &amp; Improve</h3>
+            <p style="color:#CBD5E1;">Review scores and skill gaps.</p>
+        </div>
     </div>
     """,
     unsafe_allow_html=True,
