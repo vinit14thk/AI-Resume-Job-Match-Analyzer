@@ -2,6 +2,10 @@ AI Resume & Job Match Analyzer
 
 A Python-based resume analysis and job matching system that compares a resume with a job description, evaluates skill compatibility, identifies skill gaps, and generates an automated PDF report and visual chart.
 
+Live Demo: "Try the AI Resume & Job Match Analyzer" (https://ai-resume-job-match-analyzer-bykdp9a2vxmmkpnhu9ymnt.streamlit.app/)
+
+GitHub Repository: "View the source code" (https://github.com/vinit14thk/AI-Resume-Job-Match-Analyzer)
+
 Features
 
 - Extracts text from resume PDF files.
@@ -33,22 +37,20 @@ Technologies Used
 
 Installation & Setup
 
-1. Clone the Repository
+1. Clone the repository
 
 git clone https://github.com/vinit14thk/AI-Resume-Job-Match-Analyzer.git
 cd AI-Resume-Job-Match-Analyzer
 
-2. Install Dependencies
-
-Make sure Python is installed, then run:
+2. Install dependencies
 
 python -m pip install -r requirements.txt
 
-3. Run the Analyzer
+3. Run the dashboard
 
-python resume_analyzer.py
+python -m streamlit run app.py
 
-Follow the prompts to select a resume PDF and a job description file.
+Open the local URL displayed in your terminal to use the application.
 
 System Architecture
 
@@ -180,7 +182,7 @@ A fictional sample resume is included to help users test the analyzer without sh
 Run the Analyzer
 
 1. Install the required dependencies.
-2. Run "python resume_analyzer.py".
+2. Run "python -m streamlit run app.py".
 3. Select the resume PDF when prompted. Choose "sample_resume.pdf" if it appears in the list.
 4. Select a job description file.
 5. Review the match scores, missing skills, recommendations, chart, and generated PDF report.
