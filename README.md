@@ -17,6 +17,8 @@ Features
 - Provides an interactive dashboard with resume analysis results and score cards.
 - Displays matching skills, missing skills, and prioritized skill gaps.
 - Uses rule-based skill matching and text-overlap similarity; scores are estimates, not predictions of hiring outcomes.
+- Interactive dashboard with styled score cards and a three-step workflow.
+- Scores are estimates based on rule-based skill matching and text overlap, not predictions of hiring outcomes.
 
 Technologies Used
 
