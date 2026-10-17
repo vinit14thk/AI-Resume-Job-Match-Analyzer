@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 from pypdf import PdfReader
 from report_generator import generate_report
-from skill_matcher import skill_is_present
+from skill_matcher import skill_is_present, find_skill_match
 
 print("=" * 60)
 print("AI RESUME & JOB MATCH ANALYZER")
@@ -172,7 +172,14 @@ print("\nMatching Skills:")
 if matching_skills:
 
     for skill in matching_skills:
-        print("✓", skill)
+        matched_phrase = find_skill_match(skill, resume_lower)
+
+        if matched_phrase:
+            print(
+                f'✓ {skill} — matched phrase: "{matched_phrase}"'
+            )
+        else:
+            print("✓", skill)
 
 else:
     print("No matching skills detected.")
@@ -380,5 +387,6 @@ generate_report(
     preferred_matches=preferred_matches,
     matching_skills=matching_skills,
     missing_skills=missing_skills,
-    skill_gap_priority=skill_gap_priority
+    skill_gap_priority=skill_gap_priority,
+    resume_text=resume_text
 )

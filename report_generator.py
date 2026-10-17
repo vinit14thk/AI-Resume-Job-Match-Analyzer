@@ -1,4 +1,6 @@
 from xml.sax.saxutils import escape
+from skill_matcher import find_skill_match
+
 
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
@@ -43,7 +45,8 @@ def generate_report(
     preferred_matches,
     matching_skills,
     missing_skills,
-    skill_gap_priority
+    skill_gap_priority,
+    resume_text
 ):
     output_file = "resume_analysis_report.pdf"
 
@@ -276,10 +279,27 @@ def generate_report(
     story.append(Paragraph("Matching Skills", heading_style))
 
     if matching_skills:
-        matching_text = "<br/>".join(
-            f"&#8226; {escape(str(skill))}"
-            for skill in matching_skills
-        )
+        matching_items = []
+
+        for skill in matching_skills:
+            matched_phrase = find_skill_match(
+                skill,
+                resume_text
+            )
+
+            if matched_phrase:
+                matching_items.append(
+                    f"&#8226; {escape(str(skill))} "
+                    f"— matched phrase: "
+                    f'"{escape(str(matched_phrase))}"'
+                )
+            else:
+                matching_items.append(
+                    f"&#8226; {escape(str(skill))}"
+                )
+
+        matching_text = "<br/>".join(matching_items)
+
     else:
         matching_text = "No matching skills identified."
 

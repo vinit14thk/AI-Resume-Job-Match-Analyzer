@@ -4,7 +4,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from skill_matcher import skill_is_present
+from skill_matcher import skill_is_present, find_skill_match
 
 PROJECT_DIR = Path(__file__).resolve().parent
 
@@ -55,8 +55,46 @@ class ResumeAnalyzerTests(unittest.TestCase):
             skill_is_present("scikit-learn", "Experience with Java")
         )
 
+    def test_additional_skill_variations(self):
+        cases = [
+            ("python", "Python programming experience"),
+            ("python", "Python scripting"),
+            ("sql", "Writing SQL queries"),
+            ("scikit-learn", "Used scikit learn"),
+            ("machine learning", "Worked with ML algorithms"),
+            ("communication", "Strong communication skills"),
+            ("problem-solving", "Problem-solving skills"),
+            ("git", "Git version control"),
+            ("github", "Several GitHub repositories"),
+        ]
 
-if __name__ == "_main_":
+        for skill, text in cases:
+            with self.subTest(skill=skill, text=text):
+                self.assertTrue(skill_is_present(skill, text))
+
+    def test_find_skill_match(self):
+        self.assertEqual(
+            find_skill_match(
+                "scikit-learn",
+                "Experience with sklearn"
+            ),
+            "sklearn"
+        )
+
+        self.assertEqual(
+            find_skill_match(
+                "python",
+                "Python programming experience"
+            ),
+            "python programming"
+        )
+
+        self.assertIsNone(
+            find_skill_match(
+                "sql",
+                "Experience with Java"
+            )
+        )
+
+if __name__ == "__main__":
     unittest.main(verbosity=2)
-
-
