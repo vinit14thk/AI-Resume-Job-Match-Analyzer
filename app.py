@@ -2,10 +2,11 @@ import re
 import os
 import tempfile
 from datetime import datetime
+from reportlab.lib.enums import TA_CENTER
 from io import BytesIO
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from reportlab.platypus import (
     SimpleDocTemplate,
     Paragraph,
@@ -234,6 +235,47 @@ def create_pdf_report(
     )
     story.append(Spacer(1, 8))
 
+    match_level_text = str(match_level).strip()
+    level_lower = match_level_text.lower()
+
+    if "strong" in level_lower or "high" in level_lower or "excellent" in level_lower:
+        badge_color = colors.HexColor("#DCFCE7")
+        badge_text_color = colors.HexColor("#166534")
+    elif "moderate" in level_lower or "medium" in level_lower:
+        badge_color = colors.HexColor("#DBEAFE")
+        badge_text_color = colors.HexColor("#1D4ED8")
+    else:
+        badge_color = colors.HexColor("#FEE2E2")
+        badge_text_color = colors.HexColor("#991B1B")
+
+    badge_style = ParagraphStyle(
+        "MatchLevelBadge",
+        parent=styles["Normal"],
+        fontName="Helvetica-Bold",
+        fontSize=11,
+        textColor=badge_text_color,
+        alignment=TA_CENTER,
+    )
+
+    badge = Table(
+        [[Paragraph(match_level_text, badge_style)]],
+        colWidths=[150],
+    )
+
+    badge.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), badge_color),
+        ("BOX", (0, 0), (-1, -1), 0.5, badge_color),
+        ("LEFTPADDING", (0, 0), (-1, -1), 12),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 12),
+        ("TOPPADDING", (0, 0), (-1, -1), 8),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    ]))
+
+    badge.hAlign = "CENTER"
+    story.append(badge)
+    story.append(Spacer(1, 12))
+
     story.append(
         Paragraph("Analysis Summary", styles["Heading2"])
     )
@@ -290,13 +332,28 @@ def create_pdf_report(
     )
 
     if skill_gap_priority:
+        priority_data = [["Skill", "Priority"]]
+
         for skill, priority in skill_gap_priority:
-            story.append(
-                Paragraph(
-                    f"{priority}: {skill}",
-                    styles["Normal"]
-                )
-            )
+            priority_data.append([skill, priority])
+
+        priority_table = Table(
+            priority_data,
+            colWidths=[300, 150]
+        )
+
+        priority_table.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1E3A8A")),
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+            ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+            ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#D1D5DB")),
+            ("PADDING", (0, 0), (-1, -1), 8),
+            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ]))
+
+        story.append(priority_table)
+        story.append(Spacer(1, 12))
+
     else:
         story.append(
             Paragraph("No skill gaps identified.", styles["Normal"])
