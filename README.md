@@ -27,17 +27,13 @@ Features
 
 Technologies Used
 
-- Python — Core application logic and analysis.
-- Streamlit — Interactive web dashboard.
-- Pandas — Data handling, if used in the current implementation.
-- Matplotlib — Skill-match charts and visualizations.
-- PyPDF — Extracting text from PDF resumes.
-- ReportLab — Generating PDF analysis reports.
-- Regular Expressions (Regex) — Rule-based skill matching.
-- SQLite — Local database storage, if enabled in the current implementation.
-- HTML and CSS — Dashboard styling where applicable.
-- Git and GitHub — Version control and source-code hosting.
-- Streamlit Community Cloud — Hosting the live application.
+- Python — Core programming language
+- Streamlit — Interactive web application and dashboard
+- Matplotlib — Data visualization and charts
+- Pandas — Data handling in the supporting analyzer scripts
+- Regular Expressions — Skill matching and text processing
+- Git and GitHub — Version control and project hosting
+- Streamlit Community Cloud — Web app deployment
 
 Installation & Setup
 
