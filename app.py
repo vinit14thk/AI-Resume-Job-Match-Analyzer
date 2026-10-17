@@ -31,16 +31,19 @@ st.set_page_config(
 st.markdown("""
 <style>
     .stApp {
-        background-color: #0B1120;
+        background:
+            radial-gradient(ellipse at top left, #172554 0%, transparent 42%),
+            #0B1120;
         color: #E5E7EB;
     }
 
     [data-testid="stHeader"] {
-        background-color: #0B1120;
+        background: rgba(11, 17, 32, 0.85);
     }
 
     [data-testid="stSidebar"] {
         background-color: #111827;
+        border-right: 1px solid #263754;
     }
 
     h1, h2, h3 {
@@ -53,10 +56,15 @@ st.markdown("""
     }
 
     [data-testid="stMetric"] {
-        background-color: #111C32;
+        background: linear-gradient(145deg, #111C32, #0F172A);
         border: 1px solid #263754;
-        padding: 20px;
-        border-radius: 14px;
+        padding: 22px;
+        border-radius: 16px;
+        transition: border-color 0.2s ease;
+    }
+
+    [data-testid="stMetric"]:hover {
+        border-color: #3B82F6;
     }
 
     [data-testid="stMetricLabel"] {
@@ -65,30 +73,33 @@ st.markdown("""
 
     [data-testid="stMetricValue"] {
         color: #60A5FA;
+        font-weight: 700;
     }
 
     .stButton > button,
     .stDownloadButton > button {
-        background-color: #2563EB;
-        color: white;
-        border: none;
+        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        color: #FFFFFF;
+        border: 1px solid #3B82F6;
         border-radius: 10px;
-        padding: 10px 18px;
+        padding: 11px 20px;
         font-weight: 600;
+        transition: all 0.2s ease;
     }
 
     .stButton > button:hover,
     .stDownloadButton > button:hover {
-        background-color: #1D4ED8;
-        color: white;
-        border: 1px solid #60A5FA;
+        background: #1E40AF;
+        border-color: #93C5FD;
+        color: #FFFFFF;
+        transform: translateY(-1px);
     }
 
     [data-testid="stFileUploader"] {
-        background-color: #111C32;
+        background-color: rgba(17, 28, 50, 0.8);
         border: 1px dashed #3B82F6;
-        border-radius: 12px;
-        padding: 14px;
+        border-radius: 14px;
+        padding: 16px;
     }
 
     [data-testid="stTextArea"] textarea {
@@ -98,8 +109,25 @@ st.markdown("""
         border-radius: 10px;
     }
 
+    [data-testid="stTextArea"] textarea:focus {
+        border-color: #60A5FA;
+        box-shadow: 0 0 0 1px #60A5FA;
+    }
+
     hr {
         border-color: #263754;
+        margin: 1.5rem 0;
+    }
+
+    [data-testid="stAlert"] {
+        border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+        [data-testid="stMetric"] {
+            padding: 14px;
+            border-radius: 12px;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
