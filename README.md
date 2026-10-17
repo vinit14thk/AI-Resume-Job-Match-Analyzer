@@ -14,6 +14,9 @@ Features
 - Creates a visual skill-match chart.
 - Generates an automated PDF analysis report.
 - Supports multiple resume PDFs and job description files.
+- Provides an interactive dashboard with resume analysis results and score cards.
+- Displays matching skills, missing skills, and prioritized skill gaps.
+- Uses rule-based skill matching and text-overlap similarity; scores are estimates, not predictions of hiring outcomes.
 
 Technologies Used
 
