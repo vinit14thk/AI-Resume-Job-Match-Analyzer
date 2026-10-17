@@ -1,6 +1,7 @@
 import re
 import os
 import tempfile
+from datetime import datetime
 from io import BytesIO
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
@@ -222,6 +223,16 @@ def create_pdf_report(
         )
     )
     story.append(Spacer(1, 16))
+
+    generated_at = datetime.now().strftime("%d %B %Y, %I:%M %p")
+
+    story.append(
+        Paragraph(
+            f"Generated on: {generated_at}",
+            styles["Normal"]
+        )
+    )
+    story.append(Spacer(1, 8))
 
     story.append(
         Paragraph("Analysis Summary", styles["Heading2"])

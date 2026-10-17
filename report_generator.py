@@ -1,4 +1,5 @@
 from xml.sax.saxutils import escape
+from datetime import datetime
 from skill_matcher import find_skill_match
 
 
@@ -145,6 +146,15 @@ def generate_report(
         "RESUME ANALYSIS REPORT",
         subtitle_style,
     ))
+
+    generated_at = datetime.now().strftime("%d %B %Y, %I:%M %p")
+
+    story.append(Paragraph(
+        f"Generated on: {generated_at}",
+        small_style,
+    ))
+
+    story.append(Spacer(1, 8))
 
     details = [
         [
