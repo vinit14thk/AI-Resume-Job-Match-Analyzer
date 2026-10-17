@@ -26,20 +26,122 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📄 AI Resume & Job Match Analyzer")
-st.write(
-    "Compare a resume with a job description, "
-    "review skill gaps, and explore match scores."
+st.markdown("""
+<style>
+    .stApp {
+        background-color: #0B1120;
+        color: #E5E7EB;
+    }
+
+    [data-testid="stHeader"] {
+        background-color: #0B1120;
+    }
+
+    [data-testid="stSidebar"] {
+        background-color: #111827;
+    }
+
+    h1, h2, h3 {
+        color: #F8FAFC !important;
+        letter-spacing: -0.5px;
+    }
+
+    p, label, li {
+        color: #CBD5E1;
+    }
+
+    [data-testid="stMetric"] {
+        background-color: #111C32;
+        border: 1px solid #263754;
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    [data-testid="stMetricLabel"] {
+        color: #94A3B8;
+    }
+
+    [data-testid="stMetricValue"] {
+        color: #60A5FA;
+    }
+
+    .stButton > button,
+    .stDownloadButton > button {
+        background-color: #2563EB;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 18px;
+        font-weight: 600;
+    }
+
+    .stButton > button:hover,
+    .stDownloadButton > button:hover {
+        background-color: #1D4ED8;
+        color: white;
+        border: 1px solid #60A5FA;
+    }
+
+    [data-testid="stFileUploader"] {
+        background-color: #111C32;
+        border: 1px dashed #3B82F6;
+        border-radius: 12px;
+        padding: 14px;
+    }
+
+    [data-testid="stTextArea"] textarea {
+        background-color: #111827;
+        color: #F8FAFC;
+        border: 1px solid #334155;
+        border-radius: 10px;
+    }
+
+    hr {
+        border-color: #263754;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <div style="background-color:#111C32; padding:28px; border-radius:18px;">
+        <p style="color:#60A5FA; font-size:12px; font-weight:bold;">
+            CAREER INTELLIGENCE PLATFORM
+        </p>
+        <h1 style="color:#F8FAFC; font-size:34px;">
+            AI Resume &amp; Job Match Analyzer
+        </h1>
+        <p style="color:#CBD5E1; font-size:16px;">
+            Discover skill gaps, evaluate job alignment, and turn
+            your analysis into an actionable career plan.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
-st.info(
+st.caption(
     "This tool uses rule-based skill matching and text overlap. "
-    "Its scores are estimates, not predictions of hiring outcomes."
+    "Scores are estimates, not predictions of hiring outcomes."
+)
+
+st.divider()
+
+st.subheader("01 · Upload Your Resume")
+st.caption(
+    "Upload a PDF resume to identify your existing skills "
+    "and experience."
 )
 
 resume_file = st.file_uploader(
     "Upload your resume (PDF)",
     type=["pdf"]
+)
+
+st.subheader("02 · Add the Job Description")
+st.caption(
+    "Paste the job posting so the analyzer can compare "
+    "its requirements with your resume."
 )
 
 job_description = st.text_area(
@@ -409,11 +511,51 @@ if analyze_button:
                 len(preferred_job_skills) - len(preferred_matches)
             ]
 
-            fig, ax = plt.subplots(figsize=(9, 5))
-            ax.bar(categories, values)
-            ax.set_title("Resume Skill Match Analysis")
-            ax.set_ylabel("Number of Skills")
-            ax.tick_params(axis="x", rotation=15)
+            fig, ax = plt.subplots(figsize=(10, 5))
+
+            fig.patch.set_facecolor("#0B1120")
+            ax.set_facecolor("#111C32")
+
+            bars = ax.bar(
+                categories,
+                values,
+                color=["#3B82F6", "#F87171", "#60A5FA", "#FB923C"],
+                width=0.65
+            )
+
+            ax.set_title(
+                "Resume Skill Match Analysis",
+                color="#F8FAFC",
+                fontsize=15,
+                fontweight="bold",
+                pad=18
+            )
+
+            ax.set_ylabel("Number of Skills", color="#CBD5E1")
+            ax.tick_params(axis="x", colors="#CBD5E1", rotation=12)
+            ax.tick_params(axis="y", colors="#CBD5E1")
+
+            ax.spines["bottom"].set_color("#334155")
+            ax.spines["left"].set_color("#334155")
+            ax.spines["top"].set_visible(False)
+            ax.spines["right"].set_visible(False)
+
+            ax.grid(axis="y", linestyle="--", alpha=0.2)
+            ax.set_axisbelow(True)
+
+            for bar in bars:
+                height = bar.get_height()
+                ax.annotate(
+                    str(int(height)),
+                    (bar.get_x() + bar.get_width() / 2, height),
+                    ha="center",
+                    va="bottom",
+                    color="#F8FAFC",
+                    fontsize=10,
+                    xytext=(0, 4),
+                    textcoords="offset points"
+                )
+
             fig.tight_layout()
 
             st.pyplot(fig)
