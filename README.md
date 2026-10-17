@@ -201,3 +201,8 @@ Future Improvements
 Author
 
 GitHub: "vinit14thk" (https://github.com/vinit14thk)
+
+## Dashboard Preview
+
+![AI Resume & Job Match Analyzer Dashboard](screenshots/dashboard.jpeg)
+
