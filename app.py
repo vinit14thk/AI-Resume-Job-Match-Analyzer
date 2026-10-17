@@ -443,45 +443,24 @@ if analyze_button:
             col1, col2, col3 = st.columns(3)
 
             with col1:
-                st.markdown(
-                    """
-                    <div style="background:#111C32; padding:20px; border:1px solid #2563EB; border-radius:14px;">
-                        <p style="color:#93C5FD; font-size:13px; margin-bottom:8px;">OVERALL MATCH</p>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
                 st.metric(
-                    "Overall Match",
-                    f"{overall_match_score:.2f}%",
+                    label="Overall Match",
+                    value=f"{overall_match_score:.2f}%",
+                    border=True,
                 )
 
             with col2:
-                st.markdown(
-                    """
-                    <div style="background:#111C32; padding:20px; border:1px solid #334155; border-radius:14px;">
-                        <p style="color:#93C5FD; font-size:13px; margin-bottom:8px;">SKILL ALIGNMENT</p>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
                 st.metric(
-                    "Weighted Skill Match",
-                    f"{weighted_skill_score:.2f}%",
+                    label="Weighted Skill Match",
+                    value=f"{weighted_skill_score:.2f}%",
+                    border=True,
                 )
 
             with col3:
-                st.markdown(
-                    """
-                    <div style="background:#111C32; padding:20px; border:1px solid #334155; border-radius:14px;">
-                        <p style="color:#93C5FD; font-size:13px; margin-bottom:8px;">TEXT SIMILARITY</p>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
                 st.metric(
-                    "Text Overlap Similarity",
-                    f"{text_overlap_score:.2f}%",
+                    label="Text Overlap Similarity",
+                    value=f"{text_overlap_score:.2f}%",
+                    border=True,
                 )
 
             st.subheader(match_level)
