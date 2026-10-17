@@ -181,13 +181,10 @@ else:
 print("\nMissing Skills:")
 
 if missing_skills:
-
     for skill in missing_skills:
         print("✗", skill)
-
 else:
     print("No missing skills detected.")
-
 
 print("\nResume text extracted from PDF successfully!")
 
